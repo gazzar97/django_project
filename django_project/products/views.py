@@ -20,7 +20,7 @@ def Product_Details(request, id):
                   )
 
 UserForm = modelform_factory(User,exclude=[])
-
+ProductForm = modelform_factory(Product,exclude=[])
 def Add_New_User(request):
     if request.method == "POST":
         form = UserForm(request.POST)
@@ -30,3 +30,13 @@ def Add_New_User(request):
     else:
         form = UserForm()
     return  render(request,'products/Add_New_User.html',{"form":form})
+
+def Add_New_Product(request):
+    if request.method == "POST":
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/")
+    else:
+        form = ProductForm()
+    return  render(request,'products/Add_New_Product.html',{"form":form})
