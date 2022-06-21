@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title%}Products {% endblock %}
+
+{% block content %}
+
+        <main>
+
+
+
+
+
+            <section class="speakers section-padding" id="section_3">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12 d-flex flex-column justify-content-center align-items-center">
+                            <div class="speakers-text-info">
+                                <h2 class="mb-4">Our <u class="text-info">Products</u></h2>
+
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut dolore</p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-12">
+                            <div class="row">
+
+                        {% for i in products %}
+                                <a class="col-lg-3 col-md-6 col-12" href="/product_detail/{{i.id}}">
+                                    <div class="speakers-thumb speakers-thumb-small">
+                                        <img src="{{i.Image}}" class=" img-fluid speakers-image" alt="">
+
+                                        <div class="speakers-info">
+                                            <h5 class="speakers-title mb-0">{{i.Name}}</h5>
+
+                                            <p class="speakers-text mb-0">{{i.Description}}</p>
+
+                                        </div>
+                                    </div>
+                                </a>
+
+                        {% endfor %}
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </section>
+
+
+
+
+
+
+
+        </main>
+
+{% endblock %}
