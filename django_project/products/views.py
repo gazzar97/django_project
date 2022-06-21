@@ -1,5 +1,7 @@
+from dataclasses import field
 from django.shortcuts import render,get_object_or_404,redirect
 from django.forms import  modelform_factory
+from django import forms
 from products.models import Product,User
 
 # Create your views here.
@@ -19,8 +21,14 @@ def Product_Details(request, id):
                   {"product": product}
                   )
 
-UserForm = modelform_factory(User,exclude=[])
 ProductForm = modelform_factory(Product,exclude=[])
+
+class UserForm(forms.ModelForm):
+    Password = forms.CharField(widget=forms.PasswordInput)
+    class Meta:
+        model =  User
+        fields = {'Name','Email','Password'} 
+
 def Add_New_User(request):
     if request.method == "POST":
         form = UserForm(request.POST)
